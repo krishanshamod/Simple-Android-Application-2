@@ -1,5 +1,6 @@
 package com.krishanshamod.simple_android_application_2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,9 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
+
+    private var userEmail: String = ""
+    private var userPassword: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,10 +30,30 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.LoginButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            binding.apply {
+
+                // Get the input from the user
+                userEmail = LoginEmail.text.toString()
+                userPassword = LoginPassword.text.toString()
+
+                if(userEmail=="" || userPassword=="") {
+                    // Show enter again msg if user doesn't input anything
+                    binding.textView2.text = "Please enter the Email and Password"
+                } else {
+                    //get data in Shared Preferences
+                    var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+                    val savedEmail = sharedPreferences.getString("Email",null)
+                    val savedPassword = sharedPreferences.getString("Password",null)
+
+                    // Navigate to the home if login successful or show error
+                    if(userEmail==savedEmail && userPassword==savedPassword) {
+                        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    } else {
+                        binding.textView2.text = "Email or Password incorrect"
+                    }
+                }
+            }
         }
     }
 
