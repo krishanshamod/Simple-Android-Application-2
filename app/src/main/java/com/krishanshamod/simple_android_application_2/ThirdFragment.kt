@@ -34,6 +34,17 @@ class ThirdFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // get and set data from shared preferences
+        var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+        var editor = sharedPreferences.edit()
+
+        var savedRegistered = sharedPreferences.getBoolean("Registered", false)
+
+        // If user is registered show the already registered message
+        if (savedRegistered) {
+            binding.textView3.text = "You're already registered"
+        }
+
         binding.RegButton.setOnClickListener {
 
             binding.apply {
@@ -43,29 +54,25 @@ class ThirdFragment : Fragment() {
                 userPassword = RegPassword.text.toString()
                 userName = RegName.text.toString()
 
+                // If the user is not registered, continue to registration process
+                if(savedRegistered == false) {
+                    // Show the error msg or store data
+                    if(userEmail=="" || userPassword=="" || userName=="") {
+                        binding.textView3.text = "Please fill everything"
+                    } else {
 
-                // Show the error msg or store data
-                if(userEmail=="" || userPassword=="" || userName=="") {
-                    binding.textView3.text = "Please fill everything"
-                } else {
+                        editor.apply() {
+                            putString("Name", userName)
+                            putString("Email", userEmail)
+                            putString("Password", userPassword)
+                            putBoolean("Registered", true)
+                        }.apply()
 
-                    //save data in Shared Preferences
-                    var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
-                    var editor = sharedPreferences.edit()
-
-                    editor.apply() {
-                        putString("Name", userName)
-                        putString("Email", userEmail)
-                        putString("Password", userPassword)
-                        putBoolean("Registered", true)
-                    }.apply()
-
-                    //Navigate to login screen
-                    findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
+                        //Navigate to login screen
+                        findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
+                    }
                 }
             }
         }
     }
-
-
 }
