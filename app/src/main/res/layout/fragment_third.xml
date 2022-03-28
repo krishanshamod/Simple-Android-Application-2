@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".ThirdFragment">
 
     <Button
-        android:id="@+id/LoginButton"
+        android:id="@+id/RegButton"
         android:layout_width="122dp"
         android:layout_height="45dp"
         android:ems="10"
-        android:text="Login"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.882"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.622" />
 
     <EditText
-        android:id="@+id/LoginPassword"
+        android:id="@+id/RegPassword"
         android:layout_width="225dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <EditText
-        android:id="@+id/LoginEmail"
+        android:id="@+id/RegEmail"
         android:layout_width="225dp"
         android:layout_height="53dp"
         android:ems="10"
@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.438" />
 
     <TextView
-        android:id="@+id/LoginEmailView"
+        android:id="@+id/RegEmailView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email : "
@@ -59,7 +59,7 @@
         app:layout_constraintVertical_bias="0.458" />
 
     <TextView
-        android:id="@+id/LoginPasswordView"
+        android:id="@+id/RegPasswordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password : "
@@ -70,4 +70,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.542" />
+
+    <TextView
+        android:id="@+id/RegNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.373" />
+
+    <EditText
+        android:id="@+id/RegName"
+        android:layout_width="225dp"
+        android:layout_height="58dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344" />
 </androidx.constraintlayout.widget.ConstraintLayout>
