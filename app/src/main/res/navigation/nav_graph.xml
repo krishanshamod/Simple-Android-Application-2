@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/FourthFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/FourthFragment"
-        android:name="com.krishanshamod.simple_android_application_2.ThirdFragment"
+        android:name="com.krishanshamod.simple_android_application_2.FourthFragment"
         android:label="@string/fourth_fragment_label"
         tools:layout="@layout/fragment_fourth">
 
