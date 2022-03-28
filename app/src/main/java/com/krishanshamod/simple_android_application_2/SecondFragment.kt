@@ -1,5 +1,6 @@
 package com.krishanshamod.simple_android_application_2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,8 +27,15 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //get data in Shared Preferences
+        var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+        val savedName = sharedPreferences.getString("Name",null)
+
+        // Set user's name in text view
+        binding.NameView.text = savedName
+
         binding.LogoutButton.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_SecondFragment_to_FourthFragment)
         }
     }
 
