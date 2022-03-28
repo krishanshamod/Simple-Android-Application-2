@@ -27,14 +27,22 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //get data in Shared Preferences
+        //get and set data in Shared Preferences
         var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+        var editor = sharedPreferences.edit()
         val savedName = sharedPreferences.getString("Name",null)
 
         // Set user's name in text view
         binding.NameView.text = savedName
 
         binding.LogoutButton.setOnClickListener {
+
+            // Set LoggedIn value to false
+            editor.apply() {
+                putBoolean("LoggedIn", false)
+            }.apply()
+
+            // Navigate to Welcome Screen
             findNavController().navigate(R.id.action_SecondFragment_to_FourthFragment)
         }
     }

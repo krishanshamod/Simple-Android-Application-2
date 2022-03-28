@@ -1,5 +1,6 @@
 package com.krishanshamod.simple_android_application_2
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +32,21 @@ class FourthFragment : Fragment() {
         }
 
         binding.WelcomeLoginButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FourthFragment_to_ThirdFragment)
+
+            var savedLoggedIn = false
+
+            //get and data in Shared Preferences
+            var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+            savedLoggedIn = sharedPreferences.getBoolean("LoggedIn", false)
+
+            if(savedLoggedIn){
+                // If logged in, navigate to Home screen
+                findNavController().navigate(R.id.action_FourthFragment_to_SecondFragment)
+            }
+            else{
+                // If not logged in, navigate to Login screen
+                findNavController().navigate(R.id.action_FourthFragment_to_ThirdFragment)
+            }
         }
     }
 

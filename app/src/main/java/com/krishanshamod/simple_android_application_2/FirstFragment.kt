@@ -41,14 +41,23 @@ class FirstFragment : Fragment() {
                     // Show enter again msg if user doesn't input anything
                     binding.textView2.text = "Please enter the Email and Password"
                 } else {
-                    //get data in Shared Preferences
+                    //get and set data in Shared Preferences
                     var sharedPreferences = requireContext().getSharedPreferences("SharedPrefFile", Context.MODE_PRIVATE)
+                    var editor = sharedPreferences.edit()
+
                     val savedEmail = sharedPreferences.getString("Email",null)
                     val savedPassword = sharedPreferences.getString("Password",null)
 
-                    // Navigate to the home if login successful or show error
+                    // check the email and password correct or not
                     if(userEmail==savedEmail && userPassword==savedPassword) {
+
+                        editor.apply() {
+                            putBoolean("LoggedIn", LoginSwitch.isChecked)
+                        }.apply()
+
+                        // Navigate to the Home screen
                         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
                     } else {
                         binding.textView2.text = "Email or Password incorrect"
                     }
