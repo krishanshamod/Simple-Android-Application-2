@@ -2,9 +2,10 @@
     <string name="app_name">Simple-Android-Application-2</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Register</string>
+    <string name="first_fragment_label">Login</string>
     <string name="second_fragment_label">Home</string>
-    <string name="third_fragment_label">Login</string>
+    <string name="third_fragment_label">Register</string>
+    <string name="fourth_fragment_label">Welcome</string>
 
 
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
